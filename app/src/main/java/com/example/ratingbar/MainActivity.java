@@ -10,29 +10,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private RatingBar ratingBar;
-    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindLayoutView();
-        addListenerOnButtonClick();
+        addOnRatingBarChangeListener();
     }
 
     public void bindLayoutView() {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        button = (Button) findViewById(R.id.button);
     }
 
-    public void addListenerOnButtonClick() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String rating = String.valueOf(ratingBar.getRating());
-                Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_SHORT).show();
-            }
-        });
+    public void addOnRatingBarChangeListener() {
+        ratingBar.setOnRatingBarChangeListener(new onRatingBarChangeListener());
+
         ratingBar.setMax(4);
+    }
+
+    private class onRatingBarChangeListener implements RatingBar.OnRatingBarChangeListener {
+        @Override
+        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+        }
     }
 }
