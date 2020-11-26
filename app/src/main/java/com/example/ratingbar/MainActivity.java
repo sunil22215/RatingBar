@@ -1,8 +1,6 @@
 package com.example.ratingbar;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -16,23 +14,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindLayoutView();
-        addOnRatingBarChangeListener();
+        setUpViewListener();
+    }
+
+    private void setUpViewListener() {
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Toast.makeText(getApplicationContext(), String.valueOf(rating), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void bindLayoutView() {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
     }
 
-    public void addOnRatingBarChangeListener() {
-        ratingBar.setOnRatingBarChangeListener(new onRatingBarChangeListener());
 
-        ratingBar.setMax(4);
-    }
-
-    private class onRatingBarChangeListener implements RatingBar.OnRatingBarChangeListener {
-        @Override
-        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-
-        }
-    }
 }
