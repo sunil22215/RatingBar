@@ -16,13 +16,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bindLayoutView();
         addListenerOnButtonClick();
     }
 
-    public void addListenerOnButtonClick() {
+    public void bindLayoutView() {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         button = (Button) findViewById(R.id.button);
+    }
 
+    public void addListenerOnButtonClick() {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,5 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_SHORT).show();
             }
         });
+        ratingBar.setMax(4);
     }
 }
